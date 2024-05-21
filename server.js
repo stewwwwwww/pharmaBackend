@@ -11,8 +11,9 @@ const retailerRoutes = require("./routes/retailer.js")
 const joinUsRoutes = require("./routes/hiring.js")
 const mongoose = require("mongoose");
 
-app.use(cors());
+
 const app = express();
+app.use(cors());
 //middleware
 app.use(express.json());
 app.use((req, res, next) => {
