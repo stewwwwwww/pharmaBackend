@@ -16,14 +16,24 @@ const app = express();
 const allowedOrigin = 'https://localhost:3000'; // Replace with the specific site you want to allow
 
 const corsOptions = {
-  origin: allowedOrigin,
+  origin: (origin, callback) => {
+    if (origin === allowedOrigin || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   optionsSuccessStatus: 200 // For legacy browser support
 };
 
 app.use(cors(corsOptions));
+
 //middleware
-app.use(express.json());
 app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin && origin !== allowedOrigin) {
+    return res.status(403).json({ message: 'Access forbidden: origin not allowed' });
+  }
   console.log(req.path, req.method);
   next();
 });
