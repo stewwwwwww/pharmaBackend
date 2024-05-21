@@ -13,11 +13,12 @@ const mongoose = require("mongoose");
 
 
 const app = express();
-const allowedOrigin = 'https://localhost:3000'; // Replace with the specific site you want to allow
+const allowedOrigin = 'https://localhost:3000'; // Replace with your frontend URL
 
+// Configure CORS to allow requests from the specific origin
 const corsOptions = {
   origin: (origin, callback) => {
-    if (origin === allowedOrigin || !origin) {
+    if (!origin || origin === allowedOrigin) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -28,13 +29,19 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-//middleware
+// Middleware to log requests
+app.use(express.json());
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
+});
+
+// Custom middleware to enforce allowed origin
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   if (origin && origin !== allowedOrigin) {
     return res.status(403).json({ message: 'Access forbidden: origin not allowed' });
   }
-  console.log(req.path, req.method);
   next();
 });
 //routes
