@@ -13,7 +13,14 @@ const mongoose = require("mongoose");
 
 
 const app = express();
-app.use(cors());
+const allowedOrigin = 'https://localhost:3000'; // Replace with the specific site you want to allow
+
+const corsOptions = {
+  origin: allowedOrigin,
+  optionsSuccessStatus: 200 // For legacy browser support
+};
+
+app.use(cors(corsOptions));
 //middleware
 app.use(express.json());
 app.use((req, res, next) => {
