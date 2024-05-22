@@ -11,38 +11,14 @@ const retailerRoutes = require("./routes/retailer.js")
 const joinUsRoutes = require("./routes/hiring.js")
 const mongoose = require("mongoose");
 
+app.use(cors());
 const app = express();
-const allowedOrigin = 'https://localhost:3000'; // Replace with your frontend URL
-
-// Configure CORS to allow requests from the specific origin
-// const corsOptions = {
-//   origin: (origin, callback) => {
-//     if (!origin || origin === allowedOrigin) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-//   optionsSuccessStatus: 200 // For legacy browser support
-// };
-
-// app.use(cors(corsOptions));
-app.use(cors)
-// Middleware to log requests
+//middleware
 app.use(express.json());
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
-
-// Custom middleware to enforce allowed origin
-// app.use((req, res, next) => {
-//   const origin = req.headers.origin;
-//   if (origin && origin !== allowedOrigin) {
-//     return res.status(403).json({ message: 'Access forbidden: origin not allowed' });
-//   }
-//   next();
-// });
 //routes
 app.use("/api/workouts", workoutRoutes);
 app.use("/Products", productRoutes)
