@@ -14,8 +14,9 @@ const mongoose = require("mongoose");
 const requireAuthentication = require("./middleware/requireAuthentication.js")
 
 const app = express();
-app.use(cors());
 app.use(express.json());
+app.use(cors());
+
 //middleware
 app.use(requireAuthentication)
 app.use((req, res, next) => {
