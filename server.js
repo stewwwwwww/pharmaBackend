@@ -1,6 +1,5 @@
 require("dotenv").config();
 const express = require("express");
-const cors = require("cors");
 const workoutRoutes = require("./routes/workouts.js");
 const productRoutes = require("./routes/product.js");
 const researchRoutes = require("./routes/research.js");
@@ -13,14 +12,7 @@ const mongoose = require("mongoose");
 const requireAuthentication = require("./middleware/requireAuthentication.js")
 
 const app = express();
-
-app.use(
-  cors({
-    origin: "https://localhost:3000",
-    optionsSuccessStatus: 200,
-  }),
-);
-
+//middleware
 app.use(express.json());
 //middleware
 app.use(requireAuthentication)
