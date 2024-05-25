@@ -1,5 +1,7 @@
 require("dotenv").config();
+const cors = require('cors');
 const express = require("express");
+
 const workoutRoutes = require("./routes/workouts.js");
 const productRoutes = require("./routes/product.js");
 const researchRoutes = require("./routes/research.js");
@@ -12,7 +14,7 @@ const mongoose = require("mongoose");
 const requireAuthentication = require("./middleware/requireAuthentication.js")
 
 const app = express();
-//middleware
+app.use(cors());
 app.use(express.json());
 //middleware
 app.use(requireAuthentication)
