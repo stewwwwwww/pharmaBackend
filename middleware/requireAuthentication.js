@@ -24,12 +24,14 @@ const requireAuthentication = (req, res, next) => {
     const token = authHeader && authHeader.split(' ')[1];
   
     if (!token) {
-      return res.sendStatus(401); // Unauthorized
+      console.log("No token provided");
+      return res.status(401).json({ error: "Authorization token required" });
     }
   
     jwt.verify(token, process.env.SECRET_KEY, (err) => {
       if (err) {
-        return res.sendStatus(403); // Forbidden
+        console.log("Token verification failed", err);
+        return res.status(403).json({ error: "Request is not authorized" });
       }
   
       next();
