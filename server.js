@@ -27,7 +27,7 @@ const generateToken = (user) => {
   return jwt.sign(
     { userId: user._id }, // Payload
     process.env.SECRET_TOKEN, // Secret key from .env file
-    { expiresIn: '1h' } // Token expiration time
+    //{ expiresIn: '1h' } // Token expiration time
   );
 };
 
