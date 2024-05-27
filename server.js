@@ -26,7 +26,7 @@ const generateToken = (user) => {
   // Ensure you have a user object with a unique identifier
   return jwt.sign(
     { userId: user._id }, // Payload
-    process.env.SECRET_KEY, // Secret key from .env file
+    process.env.SECRET_TOKEN, // Secret key from .env file
     { expiresIn: '1h' } // Token expiration time
   );
 };
