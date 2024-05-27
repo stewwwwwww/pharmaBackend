@@ -27,12 +27,11 @@ const requireAuthentication = (req, res, next) => {
       return res.sendStatus(401); // Unauthorized
     }
   
-    jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
+    jwt.verify(token, process.env.SECRET_KEY, (err) => {
       if (err) {
         return res.sendStatus(403); // Forbidden
       }
   
-      req.user = user;
       next();
     });
   };
