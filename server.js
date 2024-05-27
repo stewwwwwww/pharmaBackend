@@ -18,11 +18,11 @@ app.use(express.json());
 app.use(cors());
 
 //middleware
-app.use(requireAuthentication)
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
+app.use(requireAuthentication)
 
 app.use("/api/workouts", workoutRoutes);
 app.use("/Products", productRoutes);
