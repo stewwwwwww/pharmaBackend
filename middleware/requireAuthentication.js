@@ -13,8 +13,10 @@ const requireAuthentication = (req, res, next) =>{
         next()
     }catch (err){
         console.log(err)
-        return res.status(401).json({error: "Request is not authorized"})
+        console.log(token)
 
+        return res.status(401).json({error: "Request is not authorized"})
+        
     }
 }
 module.exports = requireAuthentication
