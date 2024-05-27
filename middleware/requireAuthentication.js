@@ -10,6 +10,7 @@ const requireAuthentication = (req, res, next) =>{
 
     try{
         jwt.verify(token, process.env.SECRET_TOKEN)
+        next()
     }catch (err){
         console.log(err)
         return res.status(401).json({error: "Request is not authorized"})
