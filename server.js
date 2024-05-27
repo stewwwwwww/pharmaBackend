@@ -22,6 +22,19 @@ app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
+const generateToken = (user) => {
+  // Ensure you have a user object with a unique identifier
+  return jwt.sign(
+    { userId: user._id }, // Payload
+    process.env.SECRET_KEY, // Secret key from .env file
+    { expiresIn: '1h' } // Token expiration time
+  );
+};
+
+// Example usage
+const user = { _id: '12345' }; // Replace with actual user object from your database
+const token = generateToken(user);
+console.log('Generated Token:', token);
 app.use(requireAuthentication)
 
 app.use("/api/workouts", workoutRoutes);
