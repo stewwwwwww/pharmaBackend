@@ -18,10 +18,7 @@ app.use(express.json());
 app.use(cors());
 
 //middleware
-app.use((req, res, next) => {
-  console.log(req.path, req.method);
-  next();
-});
+
 const generateToken = (user) => {
   // Ensure you have a user object with a unique identifier
   return jwt.sign(
@@ -36,6 +33,10 @@ const user = { _id: '12345' }; // Replace with actual user object from your data
 const token = generateToken(user);
 console.log('Generated Token:', token);
 app.use(requireAuthentication)
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
+});
 
 app.use("/api/workouts", workoutRoutes);
 app.use("/Products", productRoutes);
