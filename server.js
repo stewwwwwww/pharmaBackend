@@ -1,5 +1,5 @@
 require("dotenv").config();
-const cors = require('cors');
+const cors = require("cors");
 const express = require("express");
 
 const workoutRoutes = require("./routes/workouts.js");
@@ -11,11 +11,17 @@ const memberRoutes = require("./routes/member.js");
 const retailerRoutes = require("./routes/retailer.js");
 const joinUsRoutes = require("./routes/hiring.js");
 const mongoose = require("mongoose");
-const requireAuthentication = require("./middleware/requireAuthentication.js")
+const requireAuthentication = require("./middleware/requireAuthentication.js");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://your-frontend-url.com", // replace with your frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 
 //middleware
 
@@ -29,10 +35,10 @@ const generateToken = (user) => {
 };
 
 // Example usage
-const user = { _id: '12345' }; // Replace with actual user object from your database
+const user = { _id: "12345" }; // Replace with actual user object from your database
 const token = generateToken(user);
-console.log('Generated Token:', token);
-app.use(requireAuthentication)
+console.log("Generated Token:", token);
+app.use(requireAuthentication);
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
