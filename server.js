@@ -15,7 +15,13 @@ const requireAuthentication = require("./middleware/requireAuthentication.js");
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000",exposedHeaders: ['Authorization'], allowedHeaders: ['Authorization]']}));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    exposedHeaders: ["Authorization"],
+    allowedHeaders: ["Authorization", "Content-Type"],
+  }),
+);
 //middleware
 
 const generateToken = (user) => {
