@@ -19,7 +19,6 @@ app.use(
   cors({
     origin: "*",
     allowedHeaders: "*",
-    exposedHeaders: "*",
     exposedHeaders: ["Authorization"],
   }),
 );
