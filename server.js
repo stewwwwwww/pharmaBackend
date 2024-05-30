@@ -31,10 +31,9 @@ const generateToken = (user) => {
 const user = { _id: "12345" }; // Replace with actual user object from your database
 const token = generateToken(user);
 console.log("Generated Token:", token);
-app.use(requireAuthentication);
+app.use(requireAuthentication); 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
-  console.log(req.headers)
   next();
 });
 
