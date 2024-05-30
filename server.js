@@ -15,7 +15,7 @@ const requireAuthentication = require("./middleware/requireAuthentication.js");
 
 const app = express();
 app.use(express.json());
-app.use(cors({origin: 'http://localhost:3000'}));
+app.use(cors({ origin: "http://localhost:3000" }));
 //middleware
 
 const generateToken = (user) => {
@@ -34,6 +34,7 @@ console.log("Generated Token:", token);
 app.use(requireAuthentication);
 app.use((req, res, next) => {
   console.log(req.path, req.method);
+  console.log(req.headers);
   next();
 });
 
