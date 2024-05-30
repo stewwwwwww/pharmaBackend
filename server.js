@@ -15,7 +15,14 @@ const requireAuthentication = require("./middleware/requireAuthentication.js");
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "*", allowedHeaders: "*", exposedHeaders: "*"}));
+app.use(
+  cors({
+    origin: "*",
+    allowedHeaders: "*",
+    exposedHeaders: "*",
+    exposedHeaders: ["Authorization"],
+  }),
+);
 //middleware
 
 const generateToken = (user) => {
@@ -31,7 +38,7 @@ const generateToken = (user) => {
 const user = { _id: "12345" }; // Replace with actual user object from your database
 const token = generateToken(user);
 console.log("Generated Token:", token);
-app.use(requireAuthentication); 
+app.use(requireAuthentication);
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
