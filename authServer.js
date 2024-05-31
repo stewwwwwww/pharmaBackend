@@ -19,6 +19,7 @@ app.post("/login", (req, res) => {
   const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN);
   refreshTokens.push(refreshToken);
   res.json({ accessToken: accessToken, refreshToken: refreshToken });
+  console.log(refreshTokens)
 });
 app.delete("/logout", (req, res) => {
   refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
