@@ -1,4 +1,5 @@
 const express = require("express");
+const authenticateToken = require("../middleware/authenticateToken");
 const {
   createArticle,
   getArticles,
@@ -16,12 +17,12 @@ router.get("/", getArticles);
 router.get("/:ArticleId", getArticle);
 
 //POST a new Article
-router.post("/", createArticle);
+router.post("/", authenticateToken, createArticle);
 
 //DELETE a Article
-router.delete("/:ArticleId", deleteArticle);
+router.delete("/:ArticleId", authenticateToken, deleteArticle);
 
 //UPDATE a Article
-router.patch("/:ArticleId", updateArticle);
+router.patch("/:ArticleId", authenticateToken, updateArticle);
 
 module.exports = router;
