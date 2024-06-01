@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 const generateToken = (user) => {
-  return jwt.sign(user, process.env.SECRET_TOKEN, {expiresIn : "60s"});
+  return jwt.sign(user, process.env.SECRET_TOKEN, {expiresIn : "600s"});
 };
 
 
