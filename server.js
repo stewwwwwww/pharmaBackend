@@ -1,6 +1,7 @@
 require("dotenv").config();
 const cors = require("cors");
 const express = require("express");
+const jwt = require("jsonwebtoken");
 
 const workoutRoutes = require("./routes/workouts.js");
 const productRoutes = require("./routes/product.js");
