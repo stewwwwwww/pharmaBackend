@@ -41,7 +41,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use("/api/workouts", workoutRoutes);
-app.use("/Products", productRoutes);
+app.use("/Products", authenticateToken, productRoutes);
 app.use("/Researchs", researchRoutes);
 app.use("/Articles", articleRoutes);
 app.use("/Faqs", faqRoutes);
