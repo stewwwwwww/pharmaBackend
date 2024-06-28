@@ -17,8 +17,8 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
-    accessControlAllowOrigin: "http://localhost:3000",
+    origin: "https://phuongminhpharma.netlify.app/",
+    accessControlAllowOrigin: "https://phuongminhpharma.netlify.app/",
   }),
 );
 //middleware
