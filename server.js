@@ -17,7 +17,6 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://phuongminhpharma.netlify.app/"
   }),
 );
 //middleware
