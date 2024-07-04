@@ -17,8 +17,6 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://phuongminhpharma.netlify.app/",
-    accessControlAllowOrigin: "https://phuongminhpharma.netlify.app/",
   }),
 );
 //middleware
@@ -27,13 +25,13 @@ app.use((req, res, next) => {
   next();
 });
 app.use("/api/workouts", workoutRoutes);
-app.use("/Products", productRoutes);
-app.use("/Researchs", researchRoutes);
-app.use("/Articles", articleRoutes);
-app.use("/Faqs", faqRoutes);
-app.use("/Members", memberRoutes);
-app.use("/Retailers", retailerRoutes);
-app.use("/JoinUs", joinUsRoutes);
+app.use("/products", productRoutes);
+app.use("/researchs", researchRoutes);
+app.use("/articles", articleRoutes);
+app.use("/faqs", faqRoutes);
+app.use("/members", memberRoutes);
+app.use("/retailers", retailerRoutes);
+app.use("/joinUs", joinUsRoutes);
 //connect to db
 mongoose
   .connect(process.env.MONGO_URI)

@@ -18,6 +18,8 @@ const productSchema = new Schema(
         img: { type: String, required: true },
         description: { type: String, required: true },
         highlight: { type: String, required: true },
+        price: { type: String, required: true },
+        promotionPrice: { type: String },
         //TYPES: header, description, paragraph, point, image, linebreak
         //CONTENT for header, desription, paragraph, point: text String
         //CONTENT for image: url String
