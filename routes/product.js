@@ -21,7 +21,7 @@ router.get("/:CategoryId/:ProductId", getProduct);
 // POST a new Category
 router.post("/", authenticateToken, createCategory);
 
-//Post a new Category
+//Post a new Product
 router.post("/:CategoryId", authenticateToken, createProduct);
 
 // DELETE a Category

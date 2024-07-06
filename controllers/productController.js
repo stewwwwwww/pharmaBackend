@@ -11,7 +11,7 @@ const getProducts = async (req, res) => {
 const getProduct = async (req, res) => {
   const { CategoryId, ProductId } = await req.params;
   const category = await Products.findOne({
-    productCategory: CategoryId.replaceAll("-", " "),
+    category: CategoryId.replaceAll("-", " "),
   });
   // If category does not exist or has no productList
   if (!category || !category.productList) {
