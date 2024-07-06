@@ -80,10 +80,10 @@ const deleteCategory = async (req, res) => {
 const deleteProduct = async (req, res) => {
   const { CategoryId, ProductId } = req.params;
   if (
-    mongoose.Types.ObjectId.isValid(CategoryId) ||
-    mongoose.Types.ObjectId.isValid(ProductId)
+    !mongoose.Types.ObjectId.isValid(CategoryId) ||
+    !mongoose.Types.ObjectId.isValid(ProductId)
   ) {
-    return res.status(404).json({ err: "Not Found!" });
+    return res.status(404).json({ err: "Ids not valid!" });
   }
   const product = await Products.findOneAndUpdate(
     { _id: req.params.CategoryId },
