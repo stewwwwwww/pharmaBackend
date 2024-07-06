@@ -25,10 +25,10 @@ router.post("/", authenticateToken, createCategory);
 router.post("/:CategoryId", authenticateToken, createProduct);
 
 // DELETE a Category
-router.delete("/:categoryId", authenticateToken, deleteCategory);
+router.delete("/:CategoryId", authenticateToken, deleteCategory);
 
-// DELETE a Category
-router.delete("/:categoryId/:productId", authenticateToken, deleteCategory);
+// DELETE a Product
+router.delete("/:CategoryId/:ProductId", authenticateToken, deleteProduct);
 
 // UPDATE a Product
 router.patch("/:id", authenticateToken, updateProduct);
