@@ -65,11 +65,11 @@ const createProduct = async (req, res) => {
 };
 //DELETE a Category
 const deleteCategory = async (req, res) => {
-  const { categoryId } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(categoryId)) {
+  const { CategoryId } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(CategoryId)) {
     return res.status(404).json({ err: "Not Found!" });
   }
-  const category = await Products.findOneAndDelete({ _id: categoryId });
+  const category = await Products.findOneAndDelete({ _id: CategoryId });
   if (!category) {
     return res.status(404).json({ err: "Not Found!" });
   }
@@ -78,16 +78,16 @@ const deleteCategory = async (req, res) => {
 
 //DELETE a single Product
 const deleteProduct = async (req, res) => {
-  const { categoryId, productId } = req.params;
+  const { CategoryId, ProductId } = req.params;
   if (
-    mongoose.Types.ObjectId.isValid(categoryId) ||
-    mongoose.Types.ObjectId.isValid(productId)
+    mongoose.Types.ObjectId.isValid(CategoryId) ||
+    mongoose.Types.ObjectId.isValid(ProductId)
   ) {
     return res.status(404).json({ err: "Not Found!" });
   }
   const product = await Products.findOneAndUpdate(
-    { _id: req.params.categoryId },
-    { $pull: { productList: { _id: req.params.productId } } },
+    { _id: req.params.CategoryId },
+    { $pull: { productList: { _id: req.params.ProductId } } },
   );
   if (!product) {
     return res.status(404).json({ err: "Not Found!" });
@@ -114,5 +114,5 @@ module.exports = {
   getProduct,
   deleteCategory,
   updateProduct,
-  deleteProduct
+  deleteProduct,
 };
