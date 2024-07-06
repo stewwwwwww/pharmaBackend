@@ -8,7 +8,7 @@ app.use(express.json());
 app.post("/token", (req, res) => {
   if (req.headers["authorization"] === `Bearer ${process.env.SECRET_TOKEN}`) {
     const accessToken = jwt.sign({ user: "admin" }, process.env.SECRET_TOKEN, {
-      expiresIn: "600s",
+      expiresIn: "6000s",
     });
     res.json({ accessToken: accessToken });
   } else {
