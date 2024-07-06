@@ -30,11 +30,11 @@ const getProduct = async (req, res) => {
 };
 //POST a new Categoty
 const createCategory = async (req, res) => {
-  const { productCategory, categoryDescription, productList } = req.body;
+  const { category, categoryDescription, productList } = req.body;
   //add doc to db
   try {
     const product = await Products.create({
-      productCategory,
+      category,
       categoryDescription,
       productList,
     });
