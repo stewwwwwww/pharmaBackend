@@ -45,7 +45,15 @@ const createCategory = async (req, res) => {
 };
 //POST a new Product
 const createProduct = async (req, res) => {
-  const { name, img, description, highlight, components, price, promotionPrice } = req.body;
+  const {
+    name,
+    img,
+    description,
+    highlight,
+    promotionPrice,
+    price,
+    components,
+  } = req.body;
   const { CategoryId } = await req.params;
 
   //add doc to db
@@ -54,7 +62,15 @@ const createProduct = async (req, res) => {
       { _id: CategoryId },
       {
         $push: {
-          productList: { name, img, description, highlight, components, price, promotionPrice },
+          productList: {
+            name,
+            img,
+            description,
+            highlight,
+            price,
+            promotionPrice,
+            components,
+          },
         },
       },
     );
