@@ -51,7 +51,7 @@ const createProduct = async (req, res) => {
   //add doc to db
   try {
     const product = await Products.updateOne(
-      { productCategory: CategoryId.replaceAll("-", " ") },
+      { _id: CategoryId },
       {
         $push: {
           productList: { name, img, description, highlight, components },
