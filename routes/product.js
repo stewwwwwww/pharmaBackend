@@ -5,8 +5,9 @@ const {
   createProduct,
   getProducts,
   getProduct,
-  deleteProduct,
+  deleteCategory,
   updateProduct,
+  deleteProduct
 } = require("../controllers/productController");
 
 const router = express.Router();
@@ -23,8 +24,11 @@ router.post("/", authenticateToken, createCategory);
 //Post a new Category
 router.post("/:CategoryId", authenticateToken, createProduct);
 
-// DELETE a Product
-router.delete("/:id", authenticateToken, deleteProduct);
+// DELETE a Category
+router.delete("/:categoryId", authenticateToken, deleteCategory);
+
+// DELETE a Category
+router.delete("/:categoryId/:productId", authenticateToken, deleteCategory);
 
 // UPDATE a Product
 router.patch("/:id", authenticateToken, updateProduct);

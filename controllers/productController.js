@@ -28,13 +28,13 @@ const getProduct = async (req, res) => {
   // Return the found product
   res.status(200).json(product);
 };
-//POST a new Product
+//POST a new Categoty
 const createCategory = async (req, res) => {
   const { productCategory, categoryDescription, productList } = req.body;
   //add doc to db
   try {
     const product = await Products.create({
-      productCategory, 
+      productCategory,
       categoryDescription,
       productList,
     });
@@ -63,13 +63,32 @@ const createProduct = async (req, res) => {
     res.status(400).json({ err: err.message });
   }
 };
-//DELETE a Product
-const deleteProduct = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+//DELETE a Category
+const deleteCategory = async (req, res) => {
+  const { categoryId } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(categoryId)) {
     return res.status(404).json({ err: "Not Found!" });
   }
-  const product = await Products.findOneAndDelete({ _id: id });
+  const category = await Products.findOneAndDelete({ _id: categoryId });
+  if (!category) {
+    return res.status(404).json({ err: "Not Found!" });
+  }
+  res.status(200).json(category);
+};
+
+//DELETE a single Product
+const deleteProduct = async (req, res) => {
+  const { categoryId, productId } = req.params;
+  if (
+    mongoose.Types.ObjectId.isValid(categoryId) ||
+    mongoose.Types.ObjectId.isValid(productId)
+  ) {
+    return res.status(404).json({ err: "Not Found!" });
+  }
+  const product = await Products.findOneAndUpdate(
+    { _id: req.params.categoryId },
+    { $pull: { productList: { _id: req.params.productId } } },
+  );
   if (!product) {
     return res.status(404).json({ err: "Not Found!" });
   }
@@ -93,6 +112,7 @@ module.exports = {
   createProduct,
   getProducts,
   getProduct,
-  deleteProduct,
+  deleteCategory,
   updateProduct,
+  deleteProduct
 };
