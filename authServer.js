@@ -14,7 +14,6 @@ app.post("/token", (req, res) => {
   } else {
     res.json({ err: "invalid" });
   }
-  
 });
 
 PORT = 8000;
