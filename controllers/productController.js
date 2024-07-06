@@ -54,7 +54,7 @@ const createProduct = async (req, res) => {
       { _id: CategoryId },
       {
         $push: {
-          productList: { name, img, description, highlight, components },
+          productList: { name, img, description, highlight, components, price, promotionPrice },
         },
       },
     );
