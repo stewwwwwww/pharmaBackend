@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 //GET all Hirings
 const getHirings = async (req, res) => {
-  const hirings = await Hirings.find({}).sort({ createAt: -1 });
+  const hirings = await Hirings.find({});
   res.status(200).json(hirings);
 };
 

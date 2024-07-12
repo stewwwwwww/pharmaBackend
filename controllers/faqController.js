@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 //GET all Faqs
 const getFaqs = async (req, res) => {
-  const faqs = await Faqs.find({}).sort({ createAt: -1 });
+  const faqs = await Faqs.find({});
   res.status(200).json(faqs);
 };
 
