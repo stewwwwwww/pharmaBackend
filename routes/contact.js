@@ -10,13 +10,13 @@ const {
 const router = express.Router();
 
 // GET all Contact
-router.get("/", getContacts);
+router.get("/", authenticateToken, getContacts);
 
 // GET a single Contact
-router.get("/:id", getContact);
+router.get("/:id", authenticateToken, getContact);
 
 // POST a new Contact
-router.post("/", authenticateToken, createContact);
+router.post("/", createContact);
 
 // DELETE a Contact
 router.delete("/:id", authenticateToken, deleteContact);

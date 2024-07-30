@@ -33,7 +33,7 @@ app.use("/faqs", faqRoutes);
 app.use("/members", memberRoutes);
 app.use("/retailers", retailerRoutes);
 app.use("/joinUs", joinUsRoutes);
-app.use("/contact", contactRoutes);
+app.use("/contacts", contactRoutes);
 
 //connect to db
 mongoose
