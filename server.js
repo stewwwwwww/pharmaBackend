@@ -11,6 +11,7 @@ const faqRoutes = require("./routes/faq.js");
 const memberRoutes = require("./routes/member.js");
 const retailerRoutes = require("./routes/retailer.js");
 const joinUsRoutes = require("./routes/hiring.js");
+const contactRoutes = require("./routes/contact.js")
 const mongoose = require("mongoose");
 
 const app = express();
@@ -32,6 +33,8 @@ app.use("/faqs", faqRoutes);
 app.use("/members", memberRoutes);
 app.use("/retailers", retailerRoutes);
 app.use("/joinUs", joinUsRoutes);
+app.use("/contact", contactRoutes);
+
 //connect to db
 mongoose
   .connect(process.env.MONGO_URI)
