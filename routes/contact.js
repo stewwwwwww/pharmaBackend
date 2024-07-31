@@ -10,10 +10,10 @@ const {
 const router = express.Router();
 
 // GET all Contact
-router.get("/", authenticateToken, getContacts);
+router.get("/", getContacts);
 
 // GET a single Contact
-router.get("/:id", authenticateToken, getContact);
+router.get("/:id", getContact);
 
 // POST a new Contact
 router.post("/", createContact);
