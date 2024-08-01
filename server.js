@@ -11,20 +11,25 @@ const faqRoutes = require("./routes/faq.js");
 const memberRoutes = require("./routes/member.js");
 const retailerRoutes = require("./routes/retailer.js");
 const joinUsRoutes = require("./routes/hiring.js");
-const contactRoutes = require("./routes/contact.js")
+const contactRoutes = require("./routes/contact.js");
+const rateLimit = require("express-rate-limit");
 const mongoose = require("mongoose");
 
 const app = express();
 app.use(express.json());
-app.use(
-  cors({
-  }),
-);
+app.use(cors({}));
 //middleware
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
+const apiLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minutes
+  max: 2,
+  message: "Too many connection",
+});
+
+//routes
 app.use("/api/workouts", workoutRoutes);
 app.use("/products", productRoutes);
 app.use("/researchs", researchRoutes);
@@ -33,7 +38,7 @@ app.use("/faqs", faqRoutes);
 app.use("/members", memberRoutes);
 app.use("/retailers", retailerRoutes);
 app.use("/joinUs", joinUsRoutes);
-app.use("/contacts", contactRoutes);
+app.use("/contacts", apiLimiter, contactRoutes);
 
 //connect to db
 mongoose
