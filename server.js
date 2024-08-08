@@ -41,7 +41,7 @@ app.use("/members", memberRoutes);
 app.use("/retailers", retailerRoutes);
 app.use("/joinUs", joinUsRoutes);
 app.use("/contacts", apiLimiter, contactRoutes);
-app.use("/orders")
+app.use("/orders", orderRoutes)
 
 //connect to db
 mongoose
