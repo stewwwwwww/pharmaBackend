@@ -12,6 +12,8 @@ const memberRoutes = require("./routes/member.js");
 const retailerRoutes = require("./routes/retailer.js");
 const joinUsRoutes = require("./routes/hiring.js");
 const contactRoutes = require("./routes/contact.js");
+const orderRoutes = require("./routes/order.js")
+
 const rateLimit = require("express-rate-limit");
 const mongoose = require("mongoose");
 
@@ -39,6 +41,7 @@ app.use("/members", memberRoutes);
 app.use("/retailers", retailerRoutes);
 app.use("/joinUs", joinUsRoutes);
 app.use("/contacts", apiLimiter, contactRoutes);
+app.use("/orders")
 
 //connect to db
 mongoose
