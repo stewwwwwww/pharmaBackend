@@ -1,5 +1,6 @@
 const express = require("express");
 const authenticateToken = require("../middleware/authenticateToken");
+const rateLimit = require("../middleware/limitRate");
 const {
   createContact,
   getContact,
@@ -16,7 +17,7 @@ router.get("/", getContacts);
 router.get("/:id", getContact);
 
 // POST a new Contact
-router.post("/", createContact);
+router.post("/", rateLimit, createContact);
 
 // DELETE a Contact
 router.delete("/:id", authenticateToken, deleteContact);
