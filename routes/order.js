@@ -1,5 +1,7 @@
 const express = require("express");
 const authenticateToken = require("../middleware/authenticateToken");
+const rateLimit = require("../middleware/limitRate");
+
 const {
   createOrder,
   getOrder,
@@ -16,7 +18,7 @@ router.get("/", getOrders);
 router.get("/:id", getOrder);
 
 // POST a new Order
-router.post("/", createOrder);
+router.post("/",rateLimit, createOrder);
 
 // DELETE a Order
 router.delete("/:id", authenticateToken, deleteOrder);
