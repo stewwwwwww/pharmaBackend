@@ -14,7 +14,6 @@ const joinUsRoutes = require("./routes/hiring.js");
 const contactRoutes = require("./routes/contact.js");
 const orderRoutes = require("./routes/order.js")
 
-const rateLimit = require("express-rate-limit");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -25,11 +24,7 @@ app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
-const apiLimiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minutes
-  max: 2,
-  message: "Too many connection",
-});
+
 
 //routes
 app.use("/api/workouts", workoutRoutes);
@@ -40,7 +35,7 @@ app.use("/faqs", faqRoutes);
 app.use("/members", memberRoutes);
 app.use("/retailers", retailerRoutes);
 app.use("/joinUs", joinUsRoutes);
-app.use("/contacts", apiLimiter, contactRoutes);
+app.use("/contacts", contactRoutes);
 app.use("/orders", orderRoutes)
 
 //connect to db
