@@ -9,7 +9,9 @@ const getArticles = async (req, res) => {
 
 //GET a single Article
 const getArticle = async (req, res) => {
-  const article = await Articles.findOne({ "name.english": req.params.ArticleId.replaceAll("-", " ") });
+  const article = await Articles.findOne({
+    "name.english": req.params.ArticleId.replaceAll("-", " "),
+  });
   if (!article) {
     return res.status(404).json({ err: "Not Found!" });
   }
@@ -52,10 +54,7 @@ const updateArticle = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ err: "Not Found!" });
   }
-  const article = await Articles.findOneAndUpdate(
-    { _id: id },
-    { ...req.body },
-  );
+  const article = await Articles.findOneAndUpdate({ _id: id }, { ...req.body });
   if (!article) {
     return res.status(404).json({ err: "Not Found!" });
   }
