@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const memberSchema = new Schema(
   {
-    name: { type: String, require: true },
-    img: { type: String, require: true },
-    description: { type: String, require: true },
+    name: { type: String, required: true },
+    img: { type: String, required: true },
+    description: { type: String, required: true },
   },
   { timestamps: true },
 );

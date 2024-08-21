@@ -9,7 +9,7 @@ const getArticles = async (req, res) => {
 
 //GET a single Article
 const getArticle = async (req, res) => {
-  const article = await Articles.findOne({ name: req.params.ArticleId.replaceAll("-", " ") });
+  const article = await Articles.findOne({ "name.english": req.params.ArticleId.replaceAll("-", " ") });
   if (!article) {
     return res.status(404).json({ err: "Not Found!" });
   }

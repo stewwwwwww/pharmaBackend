@@ -3,10 +3,16 @@ const Schema = mongoose.Schema;
 
 const faqSchema = new Schema(
   {
-    question: { type: String, require: true, unique: true },
-    answer: { type: String, require: true },
+    question: {
+      english: { type: String, required: true, unique: true },
+      vietnameses: { type: String, required: true },
+    },
+    answer: {
+      english: { type: String, require: true },
+      vietnamese: { type: String, require: true },
+    },
   },
   { timestamps: true },
 );
 
-module.exports = mongoose.model("Faqs", faqSchema)
+module.exports = mongoose.model("Faqs", faqSchema);

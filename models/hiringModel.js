@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 const hiringSchema = new Schema(
   {
-    position: { type: String, require: true, unique: true },
-    location: { type: String, require: true },
-    description: { type: String, require: true },
-    insight: { type: String, require: true },
+    position: { type: String, required: true, unique: true },
+    location: { type: String, required: true },
+    description: { type: String, required: true },
+    insight: { type: String, required: true },
   },
   { timestamps: true },
 );

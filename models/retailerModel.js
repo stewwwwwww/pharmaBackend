@@ -3,11 +3,11 @@ const Schema = mongoose.Schema;
 
 const retailerSchema = new Schema(
   {
-    name: { type: String, require: true },
-    address: { type: String, require: true },
-    location: { type: String, require: true },
-    lat: { type: Number, require: true },
-    lng: { type: Number, require: true },
+    name: { type: String, required: true },
+    address: { type: String, required: true },
+    location: { type: String, required: true },
+    lat: { type: Number, required: true },
+    lng: { type: Number, required: true },
   },
   { timestamps: true },
 );
