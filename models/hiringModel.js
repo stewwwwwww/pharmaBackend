@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const hiringSchema = new Schema(
   {
-    position: { type: String, require: true },
+    position: { type: String, require: true, unique: true },
     location: { type: String, require: true },
     description: { type: String, require: true },
     insight: { type: String, require: true },

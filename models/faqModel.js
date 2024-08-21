@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const faqSchema = new Schema(
   {
-    question: { type: String, require: true },
+    question: { type: String, require: true, unique: true },
     answer: { type: String, require: true },
   },
   { timestamps: true },

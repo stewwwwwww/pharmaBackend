@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const researchSchema = new Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     description: { type: String, required: true },
     highlight: { type: String, required: true },
     img: { type: String, required: true },

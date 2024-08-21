@@ -14,7 +14,7 @@ const productSchema = new Schema(
     },
     productList: [
       {
-        name: { type: String, required: true },
+        name: { type: String, required: true, unique: true },
         img: { type: String, required: true },
         description: { type: String, required: true },
         highlight: { type: String, required: true },
