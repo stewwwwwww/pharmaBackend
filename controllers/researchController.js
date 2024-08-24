@@ -9,7 +9,9 @@ const getResearchs = async (req, res) => {
 
 //GET a single Research
 const getResearch = async (req, res) => {
-  const research = await Researchs.findOne({ name: req.params.ResearchId.replaceAll("-", " ") });
+  const research = await Researchs.findOne({
+    "name.english": req.params.ResearchId.replaceAll("-", " "),
+  });
   if (!research) {
     return res.status(404).json({ err: "Not Found!" });
   }
