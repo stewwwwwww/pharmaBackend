@@ -5,7 +5,10 @@ const memberSchema = new Schema(
   {
     name: { type: String, required: true },
     img: { type: String, required: true },
-    description: { type: String, required: true },
+    description: {
+      english: { type: String, required: true },
+      vietnamese: { type: String, required: true },
+    },
   },
   { timestamps: true },
 );

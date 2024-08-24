@@ -16,14 +16,8 @@ const productSchema = new Schema(
       },
     },
     categoryDescription: {
-      english: {
-        type: String,
-        required: true,
-      },
-      vietnamese: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
     },
     productList: [
       {
@@ -53,6 +47,9 @@ const productSchema = new Schema(
             },
           },
         ],
+        //VND
+        price: { type: Number, required: true },
+        promotionPrice: { type: Number },
       },
     ],
   },
