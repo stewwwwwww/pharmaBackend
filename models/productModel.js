@@ -16,8 +16,14 @@ const productSchema = new Schema(
       },
     },
     categoryDescription: {
-      type: String,
-      required: true,
+      english: {
+        type: String,
+        required: true,
+      },
+      vietnamese: {
+        type: String,
+        required: true,
+      },
     },
     productList: [
       {
