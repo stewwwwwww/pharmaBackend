@@ -5,7 +5,7 @@ const faqSchema = new Schema(
   {
     question: {
       english: { type: String, required: true, unique: true },
-      vietnameses: { type: String, required: true },
+      vietnamese: { type: String, required: true },
     },
     answer: {
       english: { type: String, require: true },
