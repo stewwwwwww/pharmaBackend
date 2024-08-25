@@ -3,9 +3,18 @@ const Schema = mongoose.Schema;
 
 const retailerSchema = new Schema(
   {
-    name: { type: String, required: true },
-    address: { type: String, required: true },
-    location: { type: String, required: true },
+    name: {
+      english: { type: String, required: true, unique: true },
+      vietnamese: { type: String, required: true },
+    },
+    address: {
+      english: { type: String, required: true },
+      vietnamese: { type: String, required: true },
+    },
+    location: {
+      english: { type: String, required: true },
+      vietnamese: { type: String, required: true },
+    },
     lat: { type: Number, required: true },
     lng: { type: Number, required: true },
   },
