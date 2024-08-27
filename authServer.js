@@ -7,8 +7,11 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: /\.localhost:3000\.$/,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",}),
+    origin: "http://localhost:3000",  // Allow requests from this origin
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",  // Allowed HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"],  // Allowed headers
+    credentials: true  // If you need to allow cookies or other credentials
+  })
 );
 app.post("/token", (req, res) => {
   if (req.headers["authorization"] === `Bearer ${process.env.SECRET_TOKEN}`) {
