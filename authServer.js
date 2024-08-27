@@ -14,7 +14,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-app.use(cors({origin: 'http://localhost:3000',}));
 app.post("/token", (req, res) => {
   if (req.headers["authorization"] === `Bearer ${process.env.SECRET_TOKEN}`) {
     const accessToken = jwt.sign({ user: "admin" }, process.env.SECRET_TOKEN, {
