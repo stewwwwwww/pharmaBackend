@@ -10,15 +10,23 @@ app.use(cors({
   methods: 'GET,PUT,POST,DELETE,OPTIONS', // allow these methods
   allowedHeaders: 'Content-Type, Authorization', // allow these headers
 }));
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "https://localhost:3000");
-//   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//   if (req.method === "OPTIONS") {
-//     return res.status(200).end();
-//   }
-//   next();
-// });
+app.use((req, res, next) => {
+  const allowedOrigin = 'http://localhost:3000'; // Your frontend origin
+
+  if (req.headers.origin !== allowedOrigin) {
+    return res.status(403).json({ message: 'Forbidden: Access is denied.' });
+  }
+
+  res.header("Access-Control-Allow-Origin", allowedOrigin);
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  next();
+});
 app.post("/token", (req, res) => {
   if (req.headers["authorization"] === `Bearer ${process.env.SECRET_TOKEN}`) {
     const accessToken = jwt.sign({ user: "admin" }, process.env.SECRET_TOKEN, {
