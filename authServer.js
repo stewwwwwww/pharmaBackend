@@ -9,7 +9,6 @@ app.use(cors({
   origin: 'http://localhost:3000', // allow requests from your frontend
   methods: 'GET,PUT,POST,DELETE,OPTIONS', // allow these methods
   allowedHeaders: 'Content-Type, Authorization', // allow these headers
-  credentials: true, // if you need to allow cookies
 }));
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", "https://localhost:3000");
