@@ -18,7 +18,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 app.use(express.json());
-const allowedOrigins = ["http://localhost:3000", "https://example.com"];
+const allowedOrigins = ["http://localhost:3000", "https://phuongminhpharma.netlify.app"];
 app.use(
   cors({
     origin: (origin, callback) => {
