@@ -5,9 +5,7 @@ const cors = require("cors");
 const app = express();
 
 app.use(express.json());
-app.use(cors({
-  "Access-Control-Allow-Origin": 'http://localhost:3000', // Allow requests from this origin
-}));
+app.use(cors());
 app.post("/token", (req, res) => {
   if (req.headers["authorization"] === `Bearer ${process.env.SECRET_TOKEN}`) {
     const accessToken = jwt.sign({ user: "admin" }, process.env.SECRET_TOKEN, {
