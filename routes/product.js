@@ -1,5 +1,4 @@
 const express = require("express");
-const authenticateToken = require("../middleware/authenticateToken");
 const {
   createCategory,
   createProduct,
@@ -19,18 +18,18 @@ router.get("/", getProducts);
 router.get("/:CategoryId/:ProductId", getProduct);
 
 // POST a new Category
-router.post("/", authenticateToken, createCategory);
+router.post("/", createCategory);
 
 //Post a new Product
-router.post("/:CategoryId", authenticateToken, createProduct);
+router.post("/:CategoryId", createProduct);
 
 // DELETE a Category
-router.delete("/:CategoryId", authenticateToken, deleteCategory);
+router.delete("/:CategoryId", deleteCategory);
 
 // DELETE a Product
-router.delete("/:CategoryId/:ProductId", authenticateToken, deleteProduct);
+router.delete("/:CategoryId/:ProductId", deleteProduct);
 
 // UPDATE a Product
-router.patch("/:id", authenticateToken, updateProduct);
+router.patch("/:id", updateProduct);
 
 module.exports = router;

@@ -1,5 +1,4 @@
 const express = require("express");
-const authenticateToken = require("../middleware/authenticateToken");
 const {
   createFaq,
   getFaq,
@@ -16,12 +15,12 @@ router.get("/", getFaqs);
 router.get("/:id", getFaq);
 
 // POST a new Faq
-router.post("/", authenticateToken, createFaq);
+router.post("/", createFaq);
 
 // DELETE a Faq
-router.delete("/:id", authenticateToken, deleteFaq);
+router.delete("/:id", deleteFaq);
 
 // UPDATE a Faq
-router.patch("/:id", authenticateToken, updateFaq);
+router.patch("/:id", updateFaq);
 
 module.exports = router;

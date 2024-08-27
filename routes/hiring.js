@@ -1,5 +1,4 @@
 const express = require("express");
-const authenticateToken = require("../middleware/authenticateToken");
 const {
   createHiring,
   getHiring,
@@ -16,12 +15,12 @@ router.get("/", getHirings);
 router.get("/:id", getHiring);
 
 // POST a new Hiring
-router.post("/",authenticateToken, createHiring);
+router.post("/", createHiring);
 
 // DELETE a Hiring
-router.delete("/:id",authenticateToken, deleteHiring);
+router.delete("/:id", deleteHiring);
 
 // UPDATE a Hiring
-router.patch("/:id",authenticateToken, updateHiring);
+router.patch("/:id", updateHiring);
 
 module.exports = router;

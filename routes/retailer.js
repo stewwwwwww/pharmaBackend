@@ -1,5 +1,4 @@
 const express = require("express");
-const authenticateToken = require("../middleware/authenticateToken");
 const {
   createRetailer,
   getRetailer,
@@ -16,12 +15,12 @@ router.get("/", getRetailers);
 router.get("/:id", getRetailer);
 
 // POST a new Retailer
-router.post("/", authenticateToken, createRetailer);
+router.post("/", createRetailer);
 
 // DELETE a Retailer
-router.delete("/:id", authenticateToken, deleteRetailer);
+router.delete("/:id", deleteRetailer);
 
 // UPDATE a Retailer
-router.patch("/:id", authenticateToken, updateRetailer);
+router.patch("/:id", updateRetailer);
 
 module.exports = router;
