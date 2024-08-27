@@ -18,23 +18,32 @@ const mongoose = require("mongoose");
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-  origin: 'https://phuongminhpharma.netlify.app', // allow requests from your frontend
-  methods: 'GET,PUT,POST,DELETE,OPTIONS', // allow these methods
-  allowedHeaders: 'Content-Type, Authorization', // allow these headers
-}));
+const allowedOrigins = ["http://localhost:3000", "https://example.com"];
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: "GET,PUT,POST,DELETE,OPTIONS", // allow these methods
+    allowedHeaders: "Content-Type, Authorization", // allow these headers
+  }),
+);
 app.use((req, res, next) => {
-  const allowedOrigin = 'https://phuongminhpharma.netlify.app'; // Your frontend origin
+  const allowedOrigin = "https://phuongminhpharma.netlify.app"; // Your frontend origin
 
   if (req.headers.origin !== allowedOrigin) {
-    return res.status(403).json({ message: 'Forbidden: Access is denied.' });
+    return res.status(403).json({ message: "Forbidden: Access is denied." });
   }
 
   res.header("Access-Control-Allow-Origin", allowedOrigin);
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-  if (req.method === 'OPTIONS') {
+  if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 
