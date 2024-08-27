@@ -9,6 +9,7 @@ app.use(
   cors({
     origin: "http://localhost:3000",
     "Access-Control-Allow-Origin": "http://localhost:3000",
+    mode: "no-cors"
   }),
 );
 app.post("/token", (req, res) => {
