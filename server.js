@@ -12,20 +12,18 @@ const memberRoutes = require("./routes/member.js");
 const retailerRoutes = require("./routes/retailer.js");
 const joinUsRoutes = require("./routes/hiring.js");
 const contactRoutes = require("./routes/contact.js");
-const orderRoutes = require("./routes/order.js")
+const orderRoutes = require("./routes/order.js");
 
 const mongoose = require("mongoose");
 
 const app = express();
 app.use(express.json());
-app.use(cors({}));
+app.use(cors({ origin: "http://localhost:3000" }));
 //middleware
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
-
-
 
 //routes
 app.use("/api/workouts", workoutRoutes);
@@ -37,7 +35,7 @@ app.use("/members", memberRoutes);
 app.use("/retailers", retailerRoutes);
 app.use("/joinUs", joinUsRoutes);
 app.use("/contacts", contactRoutes);
-app.use("/orders", orderRoutes)
+app.use("/orders", orderRoutes);
 
 //connect to db
 mongoose
