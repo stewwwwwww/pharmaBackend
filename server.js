@@ -19,12 +19,12 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: 'phuongminhpharma.netlify.app', // allow requests from your frontend
+  origin: 'https://phuongminhpharma.netlify.app', // allow requests from your frontend
   methods: 'GET,PUT,POST,DELETE,OPTIONS', // allow these methods
   allowedHeaders: 'Content-Type, Authorization', // allow these headers
 }));
 app.use((req, res, next) => {
-  const allowedOrigin = 'phuongminhpharma.netlify.app'; // Your frontend origin
+  const allowedOrigin = 'https://phuongminhpharma.netlify.app'; // Your frontend origin
 
   if (req.headers.origin !== allowedOrigin) {
     return res.status(403).json({ message: 'Forbidden: Access is denied.' });
