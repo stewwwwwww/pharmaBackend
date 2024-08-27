@@ -10,7 +10,6 @@ app.use(
     origin: "http://localhost:3000",  // Allow requests from this origin
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",  // Allowed HTTP methods
     allowedHeaders: ["Content-Type", "Authorization"],  // Allowed headers
-    credentials: true  // If you need to allow cookies or other credentials
   })
 );
 app.post("/token", (req, res) => {
