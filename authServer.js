@@ -9,7 +9,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "https://localhost:3000/home");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
 });
-app.use(cors());
+app.use(cors({origin: 'http://localhost:3000',}));
 app.post("/token", (req, res) => {
   if (req.headers["authorization"] === `Bearer ${process.env.SECRET_TOKEN}`) {
     const accessToken = jwt.sign({ user: "admin" }, process.env.SECRET_TOKEN, {
