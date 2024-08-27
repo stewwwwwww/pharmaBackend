@@ -13,7 +13,6 @@ app.use((req, res, next) => {
     return res.status(200).end();
   }
   next();
-  next();
 });
 app.use(cors({origin: 'http://localhost:3000',}));
 app.post("/token", (req, res) => {
