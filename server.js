@@ -33,17 +33,22 @@ app.use(
   }),
 );
 app.use((req, res, next) => {
-  const allowedOrigin = "https://phuongminhpharma.netlify.app"; // Your frontend origin
+  const origin = req.headers.origin;
 
-  if (req.headers.origin !== allowedOrigin) {
+  // Check if the origin is allowed
+  if (allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  } else {
+    // If the origin is not allowed, return a 403 response
     return res.status(403).json({ message: "Forbidden: Access is denied." });
   }
 
-  res.header("Access-Control-Allow-Origin", allowedOrigin);
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  // Set other CORS headers
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-  if (req.method === "OPTIONS") {
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
