@@ -4,7 +4,9 @@ const jwt = require("jsonwebtoken");
 const app = express();
 
 app.use(express.json());
-app.use(cors({}));
+app.use(cors({
+  origin: 'http://localhost:3000', // Allow requests from this origin
+}));
 app.post("/token", (req, res) => {
   if (req.headers["authorization"] === `Bearer ${process.env.SECRET_TOKEN}`) {
     const accessToken = jwt.sign({ user: "admin" }, process.env.SECRET_TOKEN, {
