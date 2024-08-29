@@ -52,7 +52,7 @@ const deleteArticle = async (req, res) => {
 const updateArticle = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ err: "Not Found Article!" });
+    return res.status(404).json({ err: `Not Found Article! ${id}` });
   }
   const article = await Articles.findOneAndUpdate({ _id: id }, { ...req.body });
   if (!article) {
