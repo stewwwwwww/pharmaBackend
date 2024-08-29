@@ -51,7 +51,7 @@ const deleteResearch = async (req, res) => {
 //UPDATE a Research
 const updateResearch = async (req, res) => {
   const { ResearchId } = req.params;
-  if (!mongoose.Types.ObjecResearchId.isValid(ResearchId)) {
+  if (!mongoose.Types.ObjectId.isValid(ResearchId)) {
     return res.status(404).json({ err: "Not Found!" });
   }
   const research = await Researchs.findOneAndUpdate(
