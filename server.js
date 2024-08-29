@@ -69,7 +69,7 @@ app.use((req, res, next) => {
 //routes
 app.use("/api/workouts", workoutRoutes);
 app.use("/products", productRoutes);
-app.use("/researchs", researchRoutes);
+app.use("/researches", researchRoutes);
 app.use("/articles", articleRoutes);
 app.use("/faqs", faqRoutes);
 app.use("/members", memberRoutes);
