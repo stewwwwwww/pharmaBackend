@@ -18,7 +18,10 @@ const mongoose = require("mongoose");
 
 const app = express();
 app.use(express.json());
-const allowedOrigins = ["http://localhost:3000", "https://phuongminhpharma.netlify.app"];
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://phuongminhpharma.netlify.app",
+];
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -37,18 +40,21 @@ app.use((req, res, next) => {
 
   // Check if the origin is allowed
   if (allowedOrigins.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
+    res.header("Access-Control-Allow-Origin", origin);
   } else {
     // If the origin is not allowed, return a 403 response
     return res.status(403).json({ message: "Forbidden: Access is denied." });
   }
 
   // Set other CORS headers
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS,PATCH');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,PUT,POST,DELETE,OPTIONS,PATCH",
+  );
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
   // Handle preflight requests
-  if (req.method === 'OPTIONS') {
+  if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
 

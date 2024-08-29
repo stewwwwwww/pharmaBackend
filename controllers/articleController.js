@@ -38,7 +38,7 @@ const createArticle = async (req, res) => {
 //DELETE a Article
 const deleteArticle = async (req, res) => {
   const { ArticleId } = req.params;
-  if (!mongoose.Types.ObjecArticleId.isValid(ArticleId)) {
+  if (!mongoose.Types.ObjectId.isValid(ArticleId)) {
     return res.status(404).json({ err: "Not Found!" });
   }
   const article = await Articles.findOneAndDelete({ _id: ArticleId });
