@@ -113,16 +113,43 @@ const deleteProduct = async (req, res) => {
 
 //UPDATE a Product
 const updateProduct = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ err: "Not Found!" });
+  const { CategoryId, ProductId } = req.params;
+
+  // Validate the provided IDs
+  if (
+    !mongoose.Types.ObjectId.isValid(CategoryId) ||
+    !mongoose.Types.ObjectId.isValid(ProductId)
+  ) {
+    return res.status(404).json({ err: "Ids not valid!" });
   }
-  const product = await Products.findOneAndUpdate({ _id: id }, { ...req.body });
-  if (!product) {
-    return res.status(404).json({ err: "Not Found!" });
+
+  try {
+    // Find the category by ID and then locate the product within that category
+    const category = await Product.findOne({ _id: CategoryId });
+
+    if (!category) {
+      return res.status(404).json({ err: "Category Not Found!" });
+    }
+
+    // Find the product within the productList array by ProductId
+    const product = category.productList.id(ProductId);
+
+    if (!product) {
+      return res.status(404).json({ err: "Product Not Found!" });
+    }
+
+    // Update the product fields with the new data from req.body
+    Object.assign(product, req.body);
+
+    // Save the updated category document
+    await category.save();
+
+    res.status(200).json(product);
+  } catch (err) {
+    res.status(500).json({ err: "Server Error!" });
   }
-  res.status(200).json(product);
 };
+
 module.exports = {
   createCategory,
   createProduct,

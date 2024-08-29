@@ -37,11 +37,11 @@ const createResearch = async (req, res) => {
 };
 //DELETE a Research
 const deleteResearch = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+  const { ResearchId } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(ResearchId)) {
     return res.status(404).json({ err: "Not Found!" });
   }
-  const research = await Researchs.findOneAndDelete({ _id: id });
+  const research = await Researchs.findOneAndDelete({ _id: ResearchId });
   if (!research) {
     return res.status(404).json({ err: "Not Found!" });
   }
@@ -55,7 +55,7 @@ const updateResearch = async (req, res) => {
     return res.status(404).json({ err: "Not Found!" });
   }
   const research = await Researchs.findOneAndUpdate(
-    { _id: id },
+    { _id: ResearchId },
     { ...req.body },
   );
   if (!research) {

@@ -37,11 +37,11 @@ const createArticle = async (req, res) => {
 };
 //DELETE a Article
 const deleteArticle = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+  const { ArticleId } = req.params;
+  if (!mongoose.Types.ObjecArticleId.isValid(ArticleId)) {
     return res.status(404).json({ err: "Not Found!" });
   }
-  const article = await Articles.findOneAndDelete({ _id: id });
+  const article = await Articles.findOneAndDelete({ _id: ArticleId });
   if (!article) {
     return res.status(404).json({ err: "Not Found!" });
   }
@@ -50,11 +50,11 @@ const deleteArticle = async (req, res) => {
 
 //UPDATE a Article
 const updateArticle = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ err: `Not Found Article! ${id}` });
+  const { ArticleId } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(ArticleId)) {
+    return res.status(404).json({ err: `Not Found Article! ${ArticleId}` });
   }
-  const article = await Articles.findOneAndUpdate({ _id: id }, { ...req.body });
+  const article = await Articles.findOneAndUpdate({ _id: ArticleId }, { ...req.body });
   if (!article) {
     return res.status(404).json({ err: "Not Found!" });
   }
