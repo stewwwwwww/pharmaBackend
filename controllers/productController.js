@@ -111,7 +111,6 @@ const deleteProduct = async (req, res) => {
   res.status(200).json(product);
 };
 
-//UPDATE a Product
 const updateProduct = async (req, res) => {
   const { CategoryId, ProductId } = req.params;
 
@@ -120,6 +119,7 @@ const updateProduct = async (req, res) => {
     !mongoose.Types.ObjectId.isValid(CategoryId) ||
     !mongoose.Types.ObjectId.isValid(ProductId)
   ) {
+    console.log("Invalid IDs");
     return res.status(404).json({ err: "Ids not valid!" });
   }
 
@@ -128,6 +128,7 @@ const updateProduct = async (req, res) => {
     const category = await Products.findOne({ _id: CategoryId });
 
     if (!category) {
+      console.log("Category Not Found");
       return res.status(404).json({ err: "Category Not Found!" });
     }
 
@@ -135,17 +136,21 @@ const updateProduct = async (req, res) => {
     const product = category.productList.id(ProductId);
 
     if (!product) {
+      console.log("Product Not Found");
       return res.status(404).json({ err: "Product Not Found!" });
     }
 
     // Update the product fields with the new data from req.body
+    console.log("Before Update:", product);
     Object.assign(product, req.body);
+    console.log("After Update:", product);
 
     // Save the updated category document
     await category.save();
 
     res.status(200).json(product);
   } catch (err) {
+    console.error("Server Error:", err);
     res.status(500).json({ err: "Server Error!" });
   }
 };
