@@ -28,7 +28,7 @@ const getProduct = async (req, res) => {
   // Return the found product
   res.status(200).json(product);
 };
-//POST a new Categoty
+//POST a new Category
 const createCategory = async (req, res) => {
   const { category, categoryDescription, productList } = req.body;
   //add doc to db
@@ -125,7 +125,7 @@ const updateProduct = async (req, res) => {
 
   try {
     // Find the category by ID and then locate the product within that category
-    const category = await Product.findOne({ _id: CategoryId });
+    const category = await Products.findOne({ _id: CategoryId });
 
     if (!category) {
       return res.status(404).json({ err: "Category Not Found!" });
