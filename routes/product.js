@@ -30,6 +30,6 @@ router.delete("/:CategoryId", deleteCategory);
 router.delete("/:CategoryId/:ProductId", deleteProduct);
 
 // UPDATE a Product
-router.patch("/:id", updateProduct);
+router.patch("/:CategoryId/:ProductId", updateProduct);
 
 module.exports = router;
