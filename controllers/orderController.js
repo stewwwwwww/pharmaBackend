@@ -21,7 +21,7 @@ const getOrder = async (req, res) => {
 };
 //POST a new Order
 const createOrder = async (req, res) => {
-  const { products, orderInfo, shippingAddress, contactInfo } = req.body;
+  const { products, orderInfo, shippingAddress, contactInfo, status } = req.body;
   //add doc to db
   try {
     const order = await Orders.create({

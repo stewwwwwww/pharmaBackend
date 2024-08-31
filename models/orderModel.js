@@ -32,6 +32,7 @@ const orderSchema = new Schema(
       email: { type: String },
       note: { type: String },
     },
+    status: { type: String, required: true },
   },
   { timestamps: true },
 );
