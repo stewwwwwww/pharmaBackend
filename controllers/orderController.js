@@ -29,6 +29,7 @@ const createOrder = async (req, res) => {
       orderInfo,
       shippingAddress,
       contactInfo,
+      status
     });
     res.status(200).json(order);
   } catch (err) {
