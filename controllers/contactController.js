@@ -21,7 +21,7 @@ const getContact = async (req, res) => {
 };
 //POST a new Contact
 const createContact = async (req, res) => {
-  const { firstName, lastName, phoneNumber, email, message } = req.body;
+  const { firstName, lastName, phoneNumber, email, message, status } = req.body;
   //add doc to db
   try {
     const contact = await Contacts.create({
@@ -30,6 +30,7 @@ const createContact = async (req, res) => {
       phoneNumber,
       email,
       message,
+      status
     });
     res.status(200).json(contact);
   } catch (err) {
