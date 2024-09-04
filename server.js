@@ -20,7 +20,7 @@ const app = express();
 app.use(express.json());
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://palegreen-sardine-650982.hostingersite.com/",
+  "https://palegreen-sardine-650982.hostingersite.com",
 ];
 app.use(
   cors({
