@@ -7,6 +7,7 @@ const getContacts = async (req, res) => {
   res.status(200).json(contacts);
 };
 
+
 //GET a single Contact
 const getContact = async (req, res) => {
   const { id } = req.params;
